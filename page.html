@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock</title>
+</head>
+<body>
+    <h1>World Clock</h1>
+    <div id="clock"></div>
+
+    <!-- Images of Skylines -->
+    <div id="skylines">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/New_York_City_Skyline_at_Dusk.jpg" alt= width="400" height="300">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/City_of_London_Skyline.jpg" alt= width="400" height="300">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Eiffel-tower-356113.jpg" alt= width="400" height="300">
+        <img src="https://www.worldhistory.org/uploads/images/950.jpg?v=1707234063" alt= width="400" height="300">
+        <img src="https://i1.pickpik.com/photos/223/465/309/city-bangkok-thailand-asia-preview.jpg" alt= width="400" height="300">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Amman_Skyline_In_Day.jpg" alt= width="400" height="300">
+    </div>
+
+    <script>
+        function displayCurrentTime() {
+            // Get current time in UTC
+            var currentTime = new Date();
+
+            // Adjust time zones for respective cities
+            var newYorkTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'America/New_York'}));
+            var parisTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
+            var romeTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'Europe/Rome'}));
+            var londonTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'Europe/London'}));
+            var bangkokTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'Asia/Bangkok'}));
+            var ammanTime = new Date(currentTime.toLocaleString('en-US', {timeZone: 'Asia/Amman'}));
+
+            // Format time strings
+            var options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false};
+
+            var newYorkTimeString = newYorkTime.toLocaleTimeString('en-US', options);
+            var parisTimeString = parisTime.toLocaleTimeString('en-US', options);
+            var romeTimeString = romeTime.toLocaleTimeString('en-US', options);
+            var londonTimeString = londonTime.toLocaleTimeString('en-US', options);
+            var bangkokTimeString = bangkokTime.toLocaleTimeString('en-US', options);
+            var ammanTimeString = ammanTime.toLocaleTimeString('en-US', options);
+
+            // Display the current time in each city
+            var clockDiv = document.getElementById('clock');
+            clockDiv.innerHTML = `
+                <p>New York: ${newYorkTimeString}</p>
+                <p>Paris: ${parisTimeString}</p>
+                <p>Rome: ${romeTimeString}</p>
+                <p>London: ${londonTimeString}</p>
+                <p>Bangkok: ${bangkokTimeString}</p>
+                <p>Amman: ${ammanTimeString}</p>
+            `;
+        }
+
+        // Call the function to display current time
+        displayCurrentTime();
+
+        // Update the time every second
+        setInterval(displayCurrentTime, 1000);
+    </script>
+    <button class="button" onclick="goToAnotherPage()">Go to Page 2</button>
+
+    <script>
+        function goToAnotherPage()
+            window.location.href = "page2.html";
+        }
+    </script>
+</body>
+</html>
